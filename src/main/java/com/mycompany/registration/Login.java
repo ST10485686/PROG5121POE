@@ -19,12 +19,12 @@ public class Login {
     //Constructor
     public Login(String username, String password, String cellNumber){
         this.username = username;
-        this.password = lastName;
+        this.password = password;
         
       }
 
     Login() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
     }
     //Username validation
     public boolean checkUsername() {
@@ -88,40 +88,36 @@ public class Login {
     public void setFirstName(String firstName) {this.firstName = firstName;}
     public void setLastName(String lastName) {this.lastName = lastName;}
     
-   public static void performLogin(Scanner scanner, Login userLogin){
-       System.out.println("\n=== Logic ===");
-       
-       
-       while (true){
-           System.out.print("Enter username: ");
-           String inputUsername = scanner.nextLine();
-           
-           
-           System.out.print("Enter passsword: ");
-           String inputPassword = scanner.nextLine(); 
-           if(userLogin.getUsername().equals(inputUsername) && userLogin.getPassword().equals(inputPassword)){
-               System.out.println("Login successful! Welcome, " + inputUsername + ".");
-               break;
-           }else{
-              System.out.println("Login failed. Please try again.");
-           }
-           
-           
-       }
-       
-   }
+   public static boolean performLogin(Scanner scanner, Login userLogin) {
+    System.out.println("\n=== Login ===");
 
-    boolean loginUser(String ivi_3, String pass123) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    while (true) {
+        System.out.print("Enter username: ");
+        String inputUsername = scanner.nextLine();
+
+        System.out.print("Enter password: ");
+        String inputPassword = scanner.nextLine();
+
+        if (userLogin.getUsername().equals(inputUsername) &&
+            userLogin.getPassword().equals(inputPassword)) {
+            System.out.println("Login successful! Welcome, " + inputUsername + ".");
+            return true;
+        } else {
+            System.out.println("Login failed. Please try again.");
+        }
     }
-
-    
-
-    
-
-  
 }
+       
+   
+   boolean loginUser(String ivi_3, String pass123) {
+    String correctUsername = "user123";
+    String correctPassword = "password";
+
+    return ivi_3.equals(correctUsername) && pass123.equals(correctPassword);
+}
+}  
     
+
     
  
             
