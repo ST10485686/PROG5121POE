@@ -3,67 +3,74 @@ package com.mycompany.registration;
 import static com.mycompany.registration.Login.performLogin;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 public class Registration {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        String username;
-        String password;
-        String cellNumber;
-
-        //Registration
-        
-        System.out.println("=== Register ===");
-        
-        // Prompt for username until valid
-        while (true) {
-            System.out.print("Enter username: ");
-            username = scanner.nextLine();
-            String usernameMessage = validateUsername(username);
-            if (usernameMessage.equals("Username successfully captured.")) {
-                System.out.println(usernameMessage);
-                break;
-            } else {
-                System.out.println(usernameMessage);
+        try (Scanner scanner = new Scanner(System.in)) {
+            String username;
+            String password;
+            String cellNumber;
+            
+            //Registration
+            
+            System.out.println("=== Register ===");
+            
+            // Prompt for username until valid
+            while (true) {
+                System.out.print("Enter username: ");
+                username = scanner.nextLine();
+                String usernameMessage = validateUsername(username);
+                if (usernameMessage.equals("Username successfully captured.")) {
+                    System.out.println(usernameMessage);
+                    break;
+                } else {
+                    System.out.println(usernameMessage);
+                }
             }
-        }
-
-        // Prompt for password until valid
-        while (true) {
-            System.out.print("Enter password: ");
-            password = scanner.nextLine();
-            String passwordMessage = validatePassword(password);
-            if (passwordMessage.equals("Password successfully captured.")) {
-                System.out.println(passwordMessage);
-                break;
-            } else {
-                System.out.println(passwordMessage);
+            
+            // Prompt for password until valid
+            while (true) {
+                System.out.print("Enter password: ");
+                password = scanner.nextLine();
+                String passwordMessage = validatePassword(password);
+                if (passwordMessage.equals("Password successfully captured.")) {
+                    System.out.println(passwordMessage);
+                    break;
+                } else {
+                    System.out.println(passwordMessage);
+                }
             }
-        }
-
-        // Prompt for cell number until valid
-        while (true) {
-            System.out.print("Enter South African cell phone number: ");
-            cellNumber = scanner.nextLine();
-            String cellNumberMessage = validateCellNumber(cellNumber);
-            if (cellNumberMessage.equals("Phone number successfully captured.")) {
-                System.out.println(cellNumberMessage);
-                break;
-            } else {
-                System.out.println(cellNumberMessage);
+            
+            // Prompt for cell number until valid
+            while (true) {
+                System.out.print("Enter South African cell phone number: ");
+                cellNumber = scanner.nextLine();
+                String cellNumberMessage = validateCellNumber(cellNumber);
+                if (cellNumberMessage.equals("Phone number successfully captured.")) {
+                    System.out.println(cellNumberMessage);
+                    break;
+                } else {
+                    System.out.println(cellNumberMessage);
+                }
             }
+            
+            // Create Login object with registered details
+            Login userLogin = new Login(username, password, cellNumber);
+            System.out.println("\nRegistration completed successfully!");
+
+        boolean loggedIn = performLogin(scanner, userLogin);
+
+        if (loggedIn) {
+            System.out.println("\nLogin successful! Opening QuickChat Messaging...");
+            JOptionPane.showMessageDialog(null, "QuickChat opened successfully.");
+            Message.main(new String[]{});  // This should run the Message GUI
+        } else {
+          System.out.println("Login failed. Exiting...");
         }
-        
-        // Create Login object with registered details
-        Login userLogin = new Login(username, password, cellNumber);
-        System.out.println("\nRegistration completed successfully!");
-
-        // Call the Login class's functionality
-        performLogin (scanner, userLogin);  //Open AI
-
-        scanner.close();
+            scanner.close();
+        }
     }
 
     public static String validateUsername(String username) {
