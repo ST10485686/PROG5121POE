@@ -1,15 +1,15 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
 package com.mycompany.registration;
 
 import java.util.Scanner;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -20,15 +20,15 @@ public class LoginTest {
     public LoginTest() {
     }
     
-    @BeforeAll
+    @BeforeClass
     public static void setUpClass() {
     }
     
-    @AfterAll
+    @AfterClass
     public static void tearDownClass() {
     }
     
-    @AfterEach
+    @After
     public void tearDown() {
     }
 
@@ -80,7 +80,7 @@ public class LoginTest {
     }
 
     @Test
-    public void testLoginUser() {
+    public void testLoginUser_3args() {
         System.out.println("loginUser");
         String inputUsername = "";
         String inputPassword = "";
@@ -161,7 +161,22 @@ public class LoginTest {
         System.out.println("performLogin");
         Scanner scanner = null;
         Login userLogin = null;
-        Login.performLogin(scanner, userLogin);
+        boolean expResult = false;
+        boolean result = Login.performLogin(scanner, userLogin);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testLoginUser_String_String() {
+        System.out.println("loginUser");
+        String ivi_3 = "";
+        String pass123 = "";
+        Login instance = new Login();
+        boolean expResult = false;
+        boolean result = instance.loginUser(ivi_3, pass123);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
