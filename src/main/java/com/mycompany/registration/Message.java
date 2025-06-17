@@ -22,7 +22,7 @@ public final class Message {
     private final String message;
     private final String messageHash;
 
-    public Message(String recipient, String message) {
+    public Message(String recipient, String message, String did_you_get_the_cake, String hash001, String msg001) {
         this.messageID = generateMessageID();
         this.numMessagesSent = ++messageCount;
         this.recipient = recipient;
@@ -137,7 +137,7 @@ public final class Message {
                     if (message.length() > 250 || message.length() < 2) {
                         JOptionPane.showMessageDialog(null, "Please enter a message of between 2 and 250 characters.");
                         continue;
-                    }   Message msg = new Message(recipient, message);
+                    }   Message msg = new Message(recipient, message, "Did you get the cake?", "hash001", "msg001");
                     String result = msg.sentMessage();
                     JOptionPane.showMessageDialog(null, result);
                     JOptionPane.showMessageDialog(null, msg.toString());
@@ -155,5 +155,6 @@ public final class Message {
         JOptionPane.showMessageDialog(null, "Total messages sent: " + returnTotalMessages());
     }
 
+    
     
 }
